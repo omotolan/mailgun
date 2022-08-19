@@ -12,13 +12,9 @@ import org.springframework.stereotype.Service;
 public class MailGunService implements EmailService {
 
 
-    private final String DOMAIN = "sandboxa02dd1929645482e8255a5c4e1d054c9.mailgun.org";
+    private final String DOMAIN = System.getenv("DOMAIN");
 
-//            System.getenv("DOMAIN");
-
-    private final String PRIVATE_KEY ="";
-
-//            System.getenv("PRIVATE_KEY");
+    private final String PRIVATE_KEY =System.getenv("PRIVATE_KEY");
 
     @Override
     public String sendSimpleMessage(UserDto userDto) throws UnirestException {
@@ -28,7 +24,6 @@ public class MailGunService implements EmailService {
                 .queryString("to", "akinsolakolawole@gmail.com")
                 .queryString("subject", "hello")
                 .queryString("text", "testing")
-//            .asJson();
                 .asString();
         return request.getBody();
     }
